@@ -1,18 +1,30 @@
 <html>
 
-<body>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
         function doClick() {
-            // alert("hiii")
-            var varNode = document.createElement("input");
-            varNode.type("text");
+            var total_text = document.getElementsByTagName("p");
+            var varLength = total_text.length;
+            document.getElementById("txtDiv").innerHTML = document.getElementById("txtDiv").innerHTML +
+                "<p><input type='text' id='" + varLength + "' onkeyup='doChange(event)'></input>&nbsp;&nbsp;&nbsp;<i id='" + varLength + "' class='fa fa-minus' onclick=remove_field(event);></i></p>";
+        }
+        function remove_field(evt) {
+            var targetValue = evt.target.id;
+            document.getElementsByTagName("p")[targetValue].remove();
+        }
+        function doChange(evt) {
+            var varTxtVal = evt.target.value;
+            document.getElementById("txtPrimary").value = varTxtVal;
         }
     </script>
-</body>
-
-<head>
-    <input type="text" id="txtPrimary">
-    <button id="btnPlus" onclick="doClick()">Plus</button>
 </head>
+
+<body>
+    <div id="txtDiv">
+        <input type="text" value="" readOnly id="txtPrimary">
+        <button id="btnPlus" onclick="doClick()">Plus</button>
+    </div>
+</body>
 
 </html>
